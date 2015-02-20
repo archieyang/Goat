@@ -17,7 +17,7 @@ class StoreSerializeTests(TestCase):
         serializer = StoreSerializer(store)
         self.assertEqual(
             {
-                'pk': store.pk,
+                'id': store.pk,
                 'name': store.name,
                 'location': store.location,
                 'category': store.category
