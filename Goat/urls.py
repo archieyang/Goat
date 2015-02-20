@@ -10,5 +10,11 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^users/', include('Goat.users.urls'), name='users'),
     url(r'^stores/', include('Goat.stores.urls', namespace='stores')),
 )
+
+urlpatterns += [
+    url(r'^api-auth/', include('rest_framework.urls',
+                               namespace='rest_framework')),
+]

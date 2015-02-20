@@ -7,6 +7,7 @@ class Store(models.Model):
     name = models.CharField(max_length=100, blank=True, default='')
     location = models.CharField(max_length=100, blank=True, default='')
     category = models.CharField(max_length=100, blank=True, default='')
+    owner = models.ForeignKey('auth.User', related_name='stores')
 
     class Meta:
         ordering = ('created',)
