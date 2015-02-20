@@ -59,4 +59,4 @@ class StoreCreateTest(TestCase):
         )
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(response.content, json.dumps(StoreSerializer(Store.objects.last()).data))
+        self.assertEqual(response.content, JSONRenderer().render(StoreSerializer(Store.objects.last()).data))
