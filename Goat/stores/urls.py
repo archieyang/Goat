@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, include, url
+from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = patterns('Goat.stores',
     # Examples:
@@ -7,3 +8,5 @@ urlpatterns = patterns('Goat.stores',
 
     url(r'^$', 'views.store_list', name='list'),
 )
+
+urlpatterns = format_suffix_patterns(urlpatterns)

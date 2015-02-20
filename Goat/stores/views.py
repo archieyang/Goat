@@ -8,7 +8,7 @@ from Goat.stores.serializers import StoreSerializer
 
 
 @api_view(['GET', 'POST'])
-def store_list(request):
+def store_list(request, format=None):
     if request.method == 'GET':
         stores = Store.objects.all()
         serializer = StoreSerializer(stores, many=True)
