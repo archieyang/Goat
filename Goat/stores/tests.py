@@ -33,7 +33,7 @@ class StoreSerializeTests(TestCase):
 
 class StoreListTests(TestCase):
     def setUp(self):
-        self.url = reverse('stores:list')
+        self.url = reverse('store-list')
         user = User.objects.create_user(username='archieyang', password='abcdef', email='yangyxcn@gmail.com')
         user.save()
         for i in range(3):
@@ -52,7 +52,7 @@ class StoreListTests(TestCase):
 
 class StoreCreateTest(TestCase):
     def setUp(self):
-        self.url = reverse('stores:list')
+        self.url = reverse('store-list')
         user = User.objects.create_user(username='archieyang', password='abcdef', email='yangyxcn@gmail.com')
         user.save()
 
@@ -101,7 +101,7 @@ class RetrieveUpdateDestroyStoreTest(TestCase):
         self.store.save()
 
     def test_retrieve_store(self):
-        response = self.client.get(reverse('stores:detail', args=(1,)))
+        response = self.client.get(reverse('store-detail', args=(1,)))
         self.assertEqual(response.status_code,
                          status.HTTP_200_OK)
         self.assertEqual(response.content,
@@ -113,7 +113,7 @@ class RetrieveUpdateDestroyStoreTest(TestCase):
             'location': 'Location',
             'category': 'Category'
         }
-        response = self.client.put(reverse('stores:detail', args=(1,)),
+        response = self.client.put(reverse('store-detail', args=(1,)),
                                    json.dumps(store_data),
                                    content_type='application/json')
 
@@ -127,7 +127,7 @@ class RetrieveUpdateDestroyStoreTest(TestCase):
             'category': 'Category'
         }
         self.client.login(username='archieyang', password='abcdef')
-        response = self.client.put(reverse('stores:detail', args=(1,)),
+        response = self.client.put(reverse('store-detail', args=(1,)),
                                    json.dumps(store_data),
                                    content_type='application/json')
 
@@ -136,14 +136,14 @@ class RetrieveUpdateDestroyStoreTest(TestCase):
         self.assertNotEqual(self.store.name, Store.objects.last().name)
 
     def test_delete_store_not_logged_in(self):
-        response = self.client.delete(reverse('stores:detail', args=(1,)),)
+        response = self.client.delete(reverse('store-detail', args=(1,)),)
 
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         self.assertEqual(Store.objects.all().count(), 1)
 
     def test_delete_success(self):
         self.client.login(username='archieyang', password='abcdef')
-        response = self.client.delete(reverse('stores:detail', args=(1,)),)
+        response = self.client.delete(reverse('store-detail', args=(1,)),)
 
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Store.objects.all().count(), 0)
