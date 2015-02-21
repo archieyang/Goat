@@ -4,7 +4,7 @@ from rest_framework import serializers
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     stores = serializers.HyperlinkedIdentityField(many=True,
-                                                  view_name='stores:detail',
+                                                  view_name='store-detail',
                                                   read_only=True)
 
     class Meta:
