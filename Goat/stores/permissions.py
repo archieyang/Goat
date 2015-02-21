@@ -1,7 +1,7 @@
 from rest_framework import permissions
 
 
-class isOwnerOrReadOnly(permissions.BasePermission):
+class IsOwnerOrReadOnly(permissions.BasePermission):
     """
     Custom permissions to only allow owners of the store to edit it
     """

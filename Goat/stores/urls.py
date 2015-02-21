@@ -8,6 +8,7 @@ urlpatterns = patterns('Goat.stores',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^$', views.StoreList.as_view(), name='list'),
+    url(r'^(?P<pk>[0-9]+)$', views.StoreDetails.as_view(), name='detail'),
 )
 
 urlpatterns = format_suffix_patterns(urlpatterns)
